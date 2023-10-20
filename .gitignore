@@ -35,3 +35,7 @@
 /.vs/TP-laba1/v17
 /TP-laba1/Debug
 /.vs
+/TP-laba1/x64/Debug/Testing.tlog
+/TP-laba1/x64/Debug
+*.json
+*.sln

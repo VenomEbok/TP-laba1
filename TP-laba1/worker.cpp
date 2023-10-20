@@ -1,6 +1,6 @@
 #include <iostream>
 #include"worker.h"
-
+#include <string>
 Worker::Worker()
 {
 	full_name = "";
@@ -10,7 +10,11 @@ Worker::Worker()
 	pay = 0;
 }
 
-Worker::Worker(const Worker& copy)
+void Worker::ClearVirtual() {
+	std::cin >> *this;
+}
+
+Worker::Worker(Worker& copy)
 {
 	*this = copy;
 }
@@ -20,7 +24,7 @@ Worker::~Worker()
 
 }
 
-Worker& Worker::operator=(const Worker& copy)
+Worker& Worker::operator=(Worker& copy)
 {
 	this->full_name = copy.full_name;
 	this->adress = copy.adress;
@@ -34,31 +38,36 @@ std::istream& operator>>(std::istream& in, Worker& object)
 {
 	setlocale(LC_ALL, "russian");
 	std::cout << "Enter the data\n";
-	cout:: << "ФИО: ";
+	std::cout << "ФИО: ";
 	getchar();
-	getline(std::cin, object.full_name);
+	std::getline(std::cin, object.full_name);
 	std::cout << "Должность: ";
-	getchar();
-	getline(std::cin, object.post);
+	std::getline(std::cin, object.post);
+	int check;
 	while (1)
 	{
 		std::cout << "Заработная плата: ";
-		int check
-		std::cin >> check;
-		if (isdigit(chek) && check > 0)
+
+		if (std::cin >> check)
 		{
-			std::cin.unget(check);
-			std::cin >> object.pay;
-			break;
+			if (check > 0)
+			{
+				object.pay=check;
+				getchar();
+				break;
+			}
 		}
 		else
+		{
 			std::cout << "Incorrect value\n";
+			std::cin.clear();
+			std::cin.ignore(1024, '\n');
+		}
 	}
 	std::cout << "Адресс проживания: ";
-	getline(std::cin, object.adress);
+	std::getline(std::cin, object.adress);
 	std::cout << "Телефон: ";
-	getchar();
-	getline(std::cin, object.phone_number);
+	std::getline(std::cin, object.phone_number);
 	return in;
 }
 
@@ -69,6 +78,23 @@ std::ostream& operator<<(std::ostream& out, Worker& object)
 	out << "Должность: " << object.post << std::endl;
 	out << "Адрес проживания: " << object.adress << std::endl;
 	out << "Телефон: " << object.phone_number << std::endl;
-	out << "Заработная плата: " << object.pay << endl << std::endl;
+	out << "Заработная плата: " << object.pay << std::endl << std::endl;
 	return out;
+}
+
+std::ofstream& operator<<(std::ofstream& fout, Worker& object)
+{
+	fout << object.full_name << std::endl;
+	fout << object.post << std::endl;
+	fout << object.adress << std::endl;
+	fout << object.phone_number << std::endl;
+	fout << object.pay << std::endl;
+	return fout;
+}
+std::ifstream& operator>> (std::ifstream& fin, Worker& object)
+{
+	std::string first_name, second_name, surname;
+	fin>> second_name>>first_name>>surname >> object.post >> object.adress >> object.phone_number >> object.pay;
+	object.full_name = second_name + " " + first_name + " " + surname;
+	return fin;
 }

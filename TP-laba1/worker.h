@@ -7,10 +7,13 @@ class Worker:public Factory
 public:
 	Worker();
 	~Worker();
-	Worker(const Worker& copy);
-	friend std::ostream& operator << (ostream& out, Worker& object);
-	friend std::istream& operator >> (istream& in, Worker& object);
-	Worker& operator =(const Worker& copy);
+	Worker(Worker& copy);
+	void ClearVirtual() override;
+	friend std::ostream& operator<< (std::ostream& out, Worker& object);
+	friend std::istream& operator>> (std::istream& in,  Worker& object);
+	Worker& operator =(Worker& copy);
+	friend std::ofstream& operator<< (std::ofstream& fout,Worker& object);
+	friend std::ifstream& operator>> (std::ifstream& fin, Worker& object);
 private:
 	std::string phone_number;
 	std::string adress;
