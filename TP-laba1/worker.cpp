@@ -93,8 +93,11 @@ std::ofstream& operator<<(std::ofstream& fout, Worker& object)
 }
 std::ifstream& operator>> (std::ifstream& fin, Worker& object)
 {
-	std::string first_name, second_name, surname;
-	fin>> second_name>>first_name>>surname >> object.post >> object.adress >> object.phone_number >> object.pay;
+	std::string first_name, second_name, surname, street;
+	fin >> second_name >> first_name >> surname >> object.post>>object.adress;
+	std::getline(fin, street);
+	object.adress = object.adress + street;
+	fin>> object.phone_number >> object.pay;
 	object.full_name = second_name + " " + first_name + " " + surname;
 	return fin;
 }
