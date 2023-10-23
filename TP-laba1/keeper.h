@@ -29,6 +29,7 @@ private:
 template <class T>
 Keeper<T>::Keeper()
 {
+	std::cout << "Вызван конструктор по умолчанию Keeper\n";
 	object = NULL;
 	size = 0;
 }
@@ -36,11 +37,13 @@ Keeper<T>::Keeper()
 template <class T>
 Keeper<T>::~Keeper()
 {
+	std::cout << "Вызван деструктор Keeper\n";
 	delete[]object;
 }
 template <class T>
 Keeper<T>::Keeper(T& obj)
 {
+	std::cout << "Вызван конструктор копирования Keeper\n";
 	object = obj;
 }
 template <class T>

@@ -13,6 +13,7 @@
 std::string main_menu = "1-Furniture\n2-Worker\n3-Machine\n4-Exit from program\n";
 int main()
 {
+	setlocale(LC_ALL, "russian");
 	Keeper<Machine> machine;
 	Keeper<Furniture> furniture;
 	Keeper<Worker> worker;

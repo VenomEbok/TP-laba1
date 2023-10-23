@@ -3,6 +3,7 @@
 #include <string>
 Furniture::Furniture()
 {
+	std::cout << "Вызван конструктор по умолчанию Furniture\n";
 	type = "";
 	color = "";
 	material = "";
@@ -18,12 +19,13 @@ void Furniture::ClearVirtual() {
 
 Furniture::Furniture(Furniture& copy)
 {
+	std::cout << "Вызван конструктор копирования Furniture\n";
 	*this = copy;
 }
 
 Furniture::~Furniture()
 {
-
+	std::cout << "Вызван деструктор Furniture\n";
 }
 
 Furniture& Furniture::operator=(Furniture& copy)

@@ -3,6 +3,7 @@
 #include <string>
 Machine::Machine()
 {
+	std::cout << "Вызван конструктор по умолчанию Machine\n";
 	brand = "";
 	model = "";
 	state_number = "";
@@ -14,12 +15,13 @@ void Machine::ClearVirtual() {
 
 Machine::Machine(Machine& copy)
 {
+	std::cout << "Вызван конструктор копирования Machine\n";
 	*this = copy;
 }
 
 Machine::~Machine()
 {
-
+	std::cout << "Вызван деструктор Machine\n";
 }
 
 Machine& Machine::operator=(Machine& copy)

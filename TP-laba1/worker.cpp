@@ -3,6 +3,7 @@
 #include <string>
 Worker::Worker()
 {
+	std::cout << "Вызван конструктор по умолчанию Worker\n";
 	full_name = "";
 	post = "";
 	adress = "";
@@ -16,12 +17,13 @@ void Worker::ClearVirtual() {
 
 Worker::Worker(Worker& copy)
 {
+	std::cout << "Вызван конструктор копирования Worker\n";
 	*this = copy;
 }
 
 Worker::~Worker()
 {
-
+	std::cout << "Вызван деструктор Worker\n";
 }
 
 Worker& Worker::operator=(Worker& copy)
